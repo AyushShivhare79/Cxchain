@@ -15,15 +15,20 @@ datasource db {
 
 model User {
   // Change to uuid
-  id       Int    @id @default(autoincrement())
-  username String
-  password String
+  id        String      @id @default(uuid())
+  username  String
+  image     String
+  // password  String
+  // userId Int 
+  solwallet SolWallet[]
 }
 
 model SolWallet {
-  id          Int    @id @default(autoincrement())
-  publicKey   String
-  privateKeyu String
+  id         String @id @default(uuid())
+  publicKey  String
+  privateKey String
+  userId     String @unique
+  user       User   @relation(fields: [userId], references: [id])
 }
 
 // enum 
