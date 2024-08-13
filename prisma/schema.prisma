@@ -12,3 +12,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  // Change to uuid
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+}
+
+model SolWallet {
+  id          Int    @id @default(autoincrement())
+  publicKey   String
+  privateKeyu String
+}
+
+// enum 
