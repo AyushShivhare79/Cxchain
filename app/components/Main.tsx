@@ -3,15 +3,25 @@
 import Image from "next/image";
 import ring from "../../public/ring.png";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function () {
   const { data: session, status } = useSession();
 
+  const router = useRouter();
+  const user = session?.user;
   return (
     <>
-      <div className="relative border border-black">
-        <Image src={ring} width={500} height={500} alt="bg-image" />
+      <div className=" relative border border-black">
+        <Image
+          className=""
+          src={ring}
+          width={800}
+          height={800}
+          alt="bg-image"
+        />
+
         <div className="border border-black w-full flex flex-col justify-center items-center bottom-1/4 absolute gap-5">
           <h1 className="text-5xl">The Indian cryptocurrency Revolution</h1>
           <p className="text-xl">
@@ -20,15 +30,20 @@ export default function () {
         </div>
 
         <div className="flex justify-center items-center">
-          <Button className="flex h-14 text-lg gap-2 rounded-3xl">
-            {/* {status === "authenticated" ? (
-            <div> */}
-            <GoogleIcon />
-            Continue with google
-            {/* </div> */}
-            {/* ) : ( */}
-            {/* <div>Go to dashboard</div> */}
-            {/* )} */}
+          <Button
+            onClick={() =>
+              user ? router.push("/dashboard") : signIn("google")
+            }
+            className="bg-blue-700 h-14 text-lg rounded-3xl hover:bg-white hover:text-black"
+          >
+            {user ? (
+              <div>Go to dashboard</div>
+            ) : (
+              <div className="flex justify-center items-center gap-2">
+                <GoogleIcon />
+                Continue with google
+              </div>
+            )}
           </Button>
         </div>
       </div>

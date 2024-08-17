@@ -14,7 +14,7 @@ export default function () {
             await signIn("google");
           }}
           onSignout={async () => {
-            await signOut({ callbackUrl: "/api/auth/signin" });
+            await signOut({ callbackUrl: "/" });
           }}
         />
       </div>
