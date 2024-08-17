@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Main from "./components/Main";
-import NavBar from "./components/NavBar";
+import AppbarClient from "./AppbarClient";
 
 export default function Home() {
   return (
     <>
-      <NavBar />
+      <AppbarClient />
       <Main />
     </>
   );
