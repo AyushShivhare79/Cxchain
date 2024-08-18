@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
 import { Keypair, PublicKey } from "@solana/web3.js";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -16,24 +17,15 @@ const authOptions = {
 
   callbacks: {
     async signIn({ user, account, profile, email, credentials }: any) {
-      console.log({ user, account, profile, email, credentials });
-
       const keypair = Keypair.generate();
       console.log("keyPair: ", keypair);
 
       const publicKey = keypair.publicKey.toBase58();
       const privateKey = keypair.secretKey;
-
-      console.log("publicKey", publicKey);
-      console.log("privateKey", privateKey);
-
       const response = await prisma.user.create({
         data: {
           username: user?.email,
           image: user?.image,
-
-          //    Converting privateKey to string so whenever you are using make sure to make it Uint8Array(64)
-
           solwallet: {
             create: {
               publicKey,
@@ -45,6 +37,33 @@ const authOptions = {
       console.log("Response: ", response);
 
       return true;
+      // return {
+      //   // id: userExist.id.toString(),
+
+      //   publicKey: publicKey,
+      //   name: user?.name,
+      //   email: user?.email,
+      //   image: user?.image,
+
+      //   // name: userExist.firstName,
+      //   // email: userExist.username,
+      // };
+    },
+
+    async session({ token, session }: any) {
+      console.log("Token: ", token);
+
+      const response = await prisma.user.findFirst({
+        where: {
+          username: session?.user?.email,
+        },
+        include: {
+          solwallet: true,
+        },
+      });
+      session.user.publicKey = response?.solwallet[0].publicKey;
+      console.log("Custom session: ", session.user.publicKey);
+      return session;
     },
   },
 };

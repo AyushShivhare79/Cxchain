@@ -7,8 +7,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import axios from "axios";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
+import authOptions from "../lib/auth";
 
-export default function () {
+export default async function () {
+  // const session = useSession()
+  const session = await getServerSession(authOptions);
+
+  const publicKey = session?.user?.publicKey;
+  console.log("THis is the key: ", publicKey);
+
+  const response = await axios.get(
+    `http://localhost:3000/api/token?address=${publicKey}`
+  );
+
+  console.log("Ahhh shit here we go again: ", response);
+
   return (
     <>
       <div className="flex justify-center items-center border border-white h-screen">
@@ -18,10 +34,10 @@ export default function () {
           </CardHeader>
           <CardContent className="flex justify-between items-center">
             <div className="flex justify-center items-center font-semibold gap-2">
-              <div className=" text-5xl">$0.00</div>
+              <div className=" text-5xl">${response.data?.totalBalance}</div>
               <div className=" text-3xl text-slate-500">USD</div>
             </div>
-            <div>Your wallet Address</div>
+            <div>Your Wallet Address</div>
           </CardContent>
           <CardContent className="flex gap-5">
             <Button className="w-full">Send</Button>
