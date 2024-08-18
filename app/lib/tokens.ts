@@ -1,20 +1,23 @@
+import solana from "../../public/solanaLogoMark.png";
+import usdc from "../../public/usd-coin-usdc-logo.png";
+import usdt from "../../public/tether-usdt-logo.png";
+
 export interface TokenDetails {
   name: string;
   mint: string;
   native: boolean;
   price: string;
-  image: string;
+  image: object;
   decimals: number;
 }
-
+console.log("This is the type: ", typeof solana);
 export const SUPPORTED_TOKENS: TokenDetails[] = [
   {
     name: "SOL",
     mint: "So11111111111111111111111111111111111111112",
     native: true,
     price: "",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/3/34/Solana_cryptocurrency_two.jpg",
+    image: solana,
     decimals: 9,
   },
   {
@@ -22,8 +25,7 @@ export const SUPPORTED_TOKENS: TokenDetails[] = [
     mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     native: false,
     price: "",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vAKYEl0YffTpWSxrqEi_gmUsl-0BuXSKMQ&s",
+    image: usdc,
     decimals: 6,
   },
   {
@@ -31,8 +33,7 @@ export const SUPPORTED_TOKENS: TokenDetails[] = [
     mint: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
     native: false,
     price: "",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvSxrpym7ij1Hf6zQOltcDORlrJGyj1kPf3A&s",
+    image: usdt,
     decimals: 6,
   },
 ];

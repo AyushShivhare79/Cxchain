@@ -7,7 +7,7 @@ import {
 import { getSupportedTokens, connection } from "@/app/lib/constants";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 
-export async function GET(req: NextRequest) {
+export async function Token(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const address = searchParams.get("address") as unknown as string;
   const supportedTokens = await getSupportedTokens();
@@ -60,3 +60,5 @@ async function getAccountBalance(
     return 0;
   }
 }
+
+export { Token as GET, Token as POST };
