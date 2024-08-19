@@ -18,7 +18,6 @@ export default function ({ session }: { session: any }) {
   const [tokens, setTokens] = useState<TokenDetails[]>([]);
   const publicKey = session?.user?.publicKey;
 
-  console.log(session);
 
   useEffect(() => {
     const getKey = async () => {

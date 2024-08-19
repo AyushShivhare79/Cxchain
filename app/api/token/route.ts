@@ -41,7 +41,6 @@ async function getAccountBalance(
 ) {
   if (token.native) {
     let balance = await connection.getBalance(new PublicKey(address));
-    console.log("balance is " + balance);
     return balance / LAMPORTS_PER_SOL;
   }
   const ata = await getAssociatedTokenAddress(
@@ -52,8 +51,6 @@ async function getAccountBalance(
   try {
     const account = await getAccount(connection, ata);
     // const mint = await getMint(connection, new PublicKey(token.mint));
-
-    console.log("Account: ", account);
 
     return Number(account.amount) / 10 ** token.decimals;
   } catch (e) {

@@ -10,8 +10,6 @@ export interface TokenDetails {
   // image: object;
   decimals: number;
 }
-
-console.log("This is the type: ", typeof solana);
 export const SUPPORTED_TOKENS: TokenDetails[] = [
   {
     name: "SOL",
