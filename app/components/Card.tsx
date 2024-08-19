@@ -8,43 +8,39 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import axios from "axios";
 import axios from "axios";
 
-import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
-import authOptions from "../lib/auth";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { TokenDetails } from "../lib/tokens";
 
 export default function ({ session }: { session: any }) {
-  const [response, setResponse] = useState<object>([{}]);
+  const [response, setResponse] = useState<ReactNode>();
+  const [tokens, setTokens] = useState<TokenDetails[]>([]);
   const publicKey = session?.user?.publicKey;
-  console.log("THis is the key: ", publicKey);
+
+  console.log(session);
 
   useEffect(() => {
     const getKey = async () => {
-      setResponse(
-        await axios.post(`http://localhost:3000/api/token?address=${publicKey}`)
+      const backData = await axios.get(
+        `/api/token?address=${publicKey}`
       );
+      setResponse(backData.data?.totalBalance);
+      setTokens(backData.data?.tokens);
     };
     getKey();
-  }, []);
-  console.log("Ahhh shit here we go again: ", response);
-
-  const tokens = response?.data?.tokens;
-  console.log("TOKENS: ", typeof tokens);
+  }, [publicKey]);
 
   return (
     <>
-      {JSON.stringify(tokens)}
       <div className="flex justify-center items-center border border-white h-screen">
         <Card className="w-2/5">
           <CardHeader>
-            <CardTitle>Welcome back, </CardTitle>
+            <CardTitle>Welcome back, {session?.user?.name} </CardTitle>
           </CardHeader>
           <CardContent className="flex justify-between items-center">
             <div className="flex justify-center items-center font-semibold gap-2">
-              <div className="text-5xl">${response?.data?.totalBalance}</div>
+              <div className="text-5xl">${response}</div>
               <div className="text-3xl text-slate-500">USD</div>
             </div>
             <div>Your Wallet Address</div>
@@ -53,13 +49,23 @@ export default function ({ session }: { session: any }) {
             <Button className="w-full">Send</Button>
             <Button className="w-full">Swap</Button>
           </CardContent>
-          <CardFooter className="flex flex-col bg-slate-200 rounded-xl">
-            <div>Tokens</div>
+          <CardFooter className="border border-black bg-slate-200 rounded-xl">
+            <div className="w-full flex flex-col gap-2">
+              <div>Tokens</div>
 
-            <div>
-              {tokens?.map((value: any, index: any) => {
-                return <div>{value.name}</div>;
-              })}
+              <div className="border border-black flex flex-col gap-3">
+                {tokens.map((value, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="border border-black flex justify-between"
+                    >
+                      <div>{value.name}</div>
+                      <div>{value.price}</div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </CardFooter>
         </Card>

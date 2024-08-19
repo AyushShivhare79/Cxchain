@@ -7,9 +7,10 @@ export interface TokenDetails {
   mint: string;
   native: boolean;
   price: string;
-  image: object;
+  // image: object;
   decimals: number;
 }
+
 console.log("This is the type: ", typeof solana);
 export const SUPPORTED_TOKENS: TokenDetails[] = [
   {
@@ -17,7 +18,7 @@ export const SUPPORTED_TOKENS: TokenDetails[] = [
     mint: "So11111111111111111111111111111111111111112",
     native: true,
     price: "",
-    image: solana,
+    // image: solana,
     decimals: 9,
   },
   {
@@ -25,7 +26,7 @@ export const SUPPORTED_TOKENS: TokenDetails[] = [
     mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     native: false,
     price: "",
-    image: usdc,
+    // image: usdc,
     decimals: 6,
   },
   {
@@ -33,7 +34,7 @@ export const SUPPORTED_TOKENS: TokenDetails[] = [
     mint: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
     native: false,
     price: "",
-    image: usdt,
+    // image: usdt,
     decimals: 6,
   },
 ];
