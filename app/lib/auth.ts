@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
 import { Keypair, PublicKey } from "@solana/web3.js";
+import { signIn, signOut } from "next-auth/react";
 
 const prisma = new PrismaClient();
 
@@ -12,13 +13,25 @@ const authOptions = {
     }),
   ],
   secret: process.env.JWT_SECRET,
-
+  pages: {
+    signIn: "/",
+    signOut: "/",
+  },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }: any) {
+      const userInfo = await prisma.user.findFirst({
+        where: {
+          username: user?.email,
+        },
+      });
+
+      if (userInfo) return true;
+
       const keypair = Keypair.generate();
 
       const publicKey = keypair.publicKey.toBase58();
       const privateKey = keypair.secretKey;
+
       const response = await prisma.user.create({
         data: {
           username: user?.email,
@@ -36,7 +49,6 @@ const authOptions = {
     },
 
     async session({ token, session }: any) {
-
       const response = await prisma.user.findFirst({
         where: {
           username: session?.user?.email,
