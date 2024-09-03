@@ -11,14 +11,16 @@ import {
 import { NextRequest, NextResponse } from "next/server";
 async function Transfer(req: NextRequest) {
   const { from, to, amount } = await req.json();
+  console.log("HERE");
 
   const secret = Uint8Array.from(from);
   const fromKeyPair = Keypair.fromSecretKey(secret);
 
   const toPubkey = new PublicKey(to);
 
+
   try {
-    await transferSolana(fromKeyPair, toPubkey, amount);
+    await transferSolana( toPubkey, amount);
   } catch {
     return NextResponse.json({ msg: "Error" });
   }
