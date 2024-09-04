@@ -18,42 +18,56 @@ import { useEffect, useState } from "react";
 export default function () {
   const [address, setAddress] = useState<string>();
   const [amount, setAmount] = useState<string>();
+  const [click, setClick] = useState<boolean>(false);
 
-  const handleClick = async () => {
-    await axios.post("http://localhost:3000/api/transfer", {
-      to: address,
-      amount: amount,
-    });
-  };
+  useEffect(() => {
+    const handleClick = async () => {
+      await axios.post("/api/transfer", {
+        to: address,
+        amount: amount,
+      });
+      setClick(false);
+    };
+    if (click === true) {
+      handleClick();
+    }
+  }, [click]);
 
   return (
     <>
-      <div className="text-black">
+      <div className="w-full">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline">Send</Button>
+            <Button className="bg-white text-black w-full">Send</Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="bg-black sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Transfer solana</DialogTitle>
+              <DialogTitle>Send to Solana Wallet Address</DialogTitle>
               <DialogDescription>
-                Make changes to your profile here. Click save when you're done.
+                Specify amount and the designated wallet address
               </DialogDescription>
             </DialogHeader>
-            <div className="text-black flex flex-col gap-5">
-              <Label htmlFor="username" className="text-right">
+            <div className="flex flex-col gap-3">
+              <Label htmlFor="username" className="">
                 Wallet Address:
               </Label>
               <Input
+                onChange={(e: any) => setAddress(e.target.value)}
                 id="solanaAddress"
-                // defaultValue="Type Here..."
-                placeholder="Type Here..."
-                className="col-span-3"
+                placeholder="Enter Solana wallet address"
+              />
+              <Label htmlFor="username" className="">
+                Amount (SOL):
+              </Label>
+              <Input
+                onChange={(e: any) => setAmount(e.target.value)}
+                autoComplete="off"
+                id="amount"
+                placeholder="0 SOL"
               />
             </div>
             <DialogFooter>
-              {/* <Button type="submit">Send Solana</Button> */}
-              <Button onClick={handleClick}>Send Solana</Button>
+              <Button onClick={() => setClick(true)}>Send Solana</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
