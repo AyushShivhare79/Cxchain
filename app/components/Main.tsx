@@ -13,38 +13,39 @@ export default function () {
   const user = session?.user;
   return (
     <>
-      <div className=" relative">
-        <Image
-          className=""
-          src={ring}
-          width={800}
-          height={800}
-          alt="bg-image"
-        />
-
-        <div className="w-full flex flex-col justify-center items-center bottom-1/4 absolute gap-5">
+      <div className="relative overflow-hidden">
+        <div className="flex relative">
+          <Image
+            className="relative right-1/4 bottom-40"
+            src={ring}
+            width={1200}
+            height={800}
+            alt="bg-image"
+          />
+          <Image src={ring} width={1200} height={800} alt="bg-image" />
+        </div>
+        <div className="flex flex-col justify-center items-center w-full gap-5 absolute z-10 bottom-20 ">
           <h1 className="text-5xl">The Indian cryptocurrency Revolution</h1>
           <p className="text-xl">
             Create a frictionless wallet with just a Google Account.
           </p>
-        </div>
-
-        <div className="flex justify-center items-center">
-          <Button
-            onClick={() =>
-              user ? router.push("/dashboard") : signIn("google")
-            }
-            className="bg-blue-700 h-14 text-lg rounded-3xl hover:bg-white hover:text-black"
-          >
-            {user ? (
-              <div>Go to dashboard</div>
-            ) : (
-              <div className="flex justify-center items-center gap-2">
-                <GoogleIcon />
-                Continue with google
-              </div>
-            )}
-          </Button>
+          <div className="pt-10">
+            <Button
+              onClick={() =>
+                user ? router.push("/dashboard") : signIn("google")
+              }
+              className="bg-blue-700 h-14 text-lg rounded-3xl hover:bg-white hover:text-black"
+            >
+              {user ? (
+                <div>Go to dashboard</div>
+              ) : (
+                <div className="flex justify-center items-center gap-2">
+                  <GoogleIcon />
+                  Continue with google
+                </div>
+              )}
+            </Button>
+          </div>
         </div>
       </div>
     </>

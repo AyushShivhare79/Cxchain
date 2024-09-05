@@ -15,7 +15,7 @@ export default function ({
   const { data: session, status } = useSession();
   return (
     <>
-      <div className=" bg-black flex justify-between items-center px-20 py-3">
+      <div className="flex justify-between items-center bg-black px-20 py-3">
         <div className="flex items-center justify-center gap-2 text-xl font-semibold">
           <WalletIcon />
           <div>Cxchain</div>

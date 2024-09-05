@@ -7,7 +7,7 @@ export default function () {
   const session = useSession();
   return (
     <>
-      <div>
+      <div className="relative z-10">
         <NavBar
           user={session.data?.user}
           onSignin={async () => {
