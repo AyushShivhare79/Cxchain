@@ -7,7 +7,7 @@ export default async function () {
 
   return (
     <>
-      <Card session={session} /> 
+      <Card session={session} />
     </>
   );
 }

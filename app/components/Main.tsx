@@ -13,7 +13,7 @@ export default function () {
   const user = session?.user;
   return (
     <>
-      <div className=" relative border border-black">
+      <div className=" relative">
         <Image
           className=""
           src={ring}
@@ -22,7 +22,7 @@ export default function () {
           alt="bg-image"
         />
 
-        <div className="border border-black w-full flex flex-col justify-center items-center bottom-1/4 absolute gap-5">
+        <div className="w-full flex flex-col justify-center items-center bottom-1/4 absolute gap-5">
           <h1 className="text-5xl">The Indian cryptocurrency Revolution</h1>
           <p className="text-xl">
             Create a frictionless wallet with just a Google Account.
