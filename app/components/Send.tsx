@@ -1,5 +1,6 @@
 "use client";
 
+import PropagateLoader from "react-spinners/PropagateLoader";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -21,11 +22,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { sendBody, SendBody } from "../types/sendBody";
 
 export default function () {
-  // const [address, setAddress] = useState<string>();
-  // const [amount, setAmount] = useState<string>();
-  // const [click, setClick] = useState<boolean>(false);
-
-  const [open, setOpen] = useState<boolean>(false);
+  // const [open, setOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const {
     register,
@@ -35,18 +33,25 @@ export default function () {
   } = useForm<SendBody>({ resolver: zodResolver(sendBody) });
 
   const onSubmit: SubmitHandler<SendBody> = async (data) => {
-    const response = await axios.post("/api/transfer", {
-      to: data.address,
-      amount: data.amount,
-    });
+    setLoading(true);
 
-    console.log(response);
-
-    if (response.status === 200) {
-      reset();
-      return toast({
-        description: "Transfer successful!",
+    try {
+      const response = await axios.post("/api/transfer", {
+        to: data.address,
+        amount: data.amount,
       });
+
+      console.log(response);
+      setLoading(false);
+
+      if (response.status === 200) {
+        reset();
+        return toast({
+          description: "Transfer successful!",
+        });
+      }
+    } catch (errors) {
+      console.log(errors);
     }
     // return toast({
     //   variant: "destructive",
@@ -54,22 +59,10 @@ export default function () {
     // });
   };
 
-  // useEffect(() => {
-  //   const handleClick = async () => {
-  //     await axios.post("/api/transfer", {
-  //       to: address,
-  //       amount: amount,
-  //     });
-  //     setClick(false);
-  //   };
-  //   if (click === true) {
-  //     handleClick();
-  //   }
-  // }, [click]);
-
   return (
     <>
-      <Dialog open={open} onOpenChange={setOpen}>
+      {/* open={open} onOpenChange={setOpen} */}
+      <Dialog>
         <DialogTrigger asChild>
           <Button className="bg-white text-black w-full">Send</Button>
         </DialogTrigger>
@@ -88,7 +81,6 @@ export default function () {
               Wallet Address:
             </Label>
             <Input
-              // onChange={(e: any) => setAddress(e.target.value)}
               id="solanaAddress"
               placeholder="Enter Solana wallet address"
               {...register("address")}
@@ -102,7 +94,6 @@ export default function () {
               Amount (SOL):
             </Label>
             <Input
-              // onChange={(e: any) => setAmount(e.target.value)}
               type="number"
               autoComplete="off"
               id="amount"
@@ -117,11 +108,15 @@ export default function () {
 
             <DialogFooter>
               <Button
+                disabled={loading}
                 type="submit"
-                className="bg-white text-black w-full"
-                // onClick={() => setClick(true)}
+                className="flex justify-center items-center w-full text-black bg-white"
               >
-                Send Solana
+                {loading ? (
+                  <PropagateLoader size={10} />
+                ) : (
+                  <div>Send Solana</div>
+                )}
               </Button>
             </DialogFooter>
           </form>

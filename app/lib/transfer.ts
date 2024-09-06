@@ -10,6 +10,7 @@ import {
 } from "@solana/web3.js";
 import { getServerSession } from "next-auth";
 import authOptions from "./auth";
+import { connection } from "./constants";
 
 export default async function transferSolana(to: PublicKey, amount: number) {
   const session = await getServerSession(authOptions);
@@ -34,10 +35,10 @@ export default async function transferSolana(to: PublicKey, amount: number) {
   const secret = Uint8Array.from(b);
   const from = Keypair.fromSecretKey(secret);
 
-  const connection = new Connection(
-    "https://api.devnet.solana.com",
-    "confirmed"
-  );
+  // const connection = new Connection(
+  //   "https://api.devnet.solana.com",
+  //   "confirmed"
+  // );
   const instruction = SystemProgram.transfer({
     fromPubkey: from.publicKey,
     toPubkey: to,

@@ -1,6 +1,9 @@
 "use client";
 
 import PropagateLoader from "react-spinners/PropagateLoader";
+import HashLoader from "react-spinners/HashLoader";
+
+
 import {
   Card,
   CardContent,
@@ -25,8 +28,8 @@ export interface TokensTypes {
 }
 export default function ({ session }: { session: any }) {
   const [response, setResponse] = useState<ReactNode>();
-  const [tokens, setTokens] = useState<TokensTypes[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [tokens, setTokens] = useState<TokensTypes[]>([]);
   const [showCopiedMessage, setShowCopiedMessage] = useState<boolean>(false);
 
   const publicKey = session?.user?.publicKey;
@@ -53,7 +56,8 @@ export default function ({ session }: { session: any }) {
     <>
       <div className="flex justify-center items-center h-screen">
         {loading ? (
-          <PropagateLoader color="#ffffff" size={15} />
+            <HashLoader color="#ffffff" size={90}/>
+          // <PropagateLoader color="#ffffff" size={15} />
         ) : (
           <Card className="bg-gray-900 text-white w-2/5">
             <CardHeader>

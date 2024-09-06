@@ -1,4 +1,4 @@
-import { Connection } from "@solana/web3.js";
+import { clusterApiUrl, Connection } from "@solana/web3.js";
 import axios from "axios";
 import { SUPPORTED_TOKENS } from "./tokens";
 
@@ -11,9 +11,11 @@ let prices: {
 
 const TOKEN_PRICE_REFRESH_INTERVAL = 60 * 1000; // every 60s
 
-export const connection = new Connection(
-  "https://solana-mainnet.g.alchemy.com/v2/EspGgEsKtp6xdG1-P32lj9raEFUlgXNc"
-);
+// export const connection = new Connection(
+//   "https://solana-mainnet.g.alchemy.com/v2/EspGgEsKtp6xdG1-P32lj9raEFUlgXNc"
+// );
+
+export const connection = new Connection(clusterApiUrl("devnet"));
 
 export async function getSupportedTokens() {
   if (
