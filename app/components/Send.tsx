@@ -23,6 +23,7 @@ import { sendBody, SendBody } from "../types/sendBody";
 
 export default function () {
   // const [open, setOpen] = useState<boolean>(false);
+
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const {
@@ -36,27 +37,30 @@ export default function () {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/transfer", {
-        to: data.address,
+      const response = await axios.post("/api/transfer?", {
+        toAddress: data.toAddress,
         amount: data.amount,
       });
-
-      console.log(response);
+      
       setLoading(false);
 
-      if (response.status === 200) {
+      if (response.data.msg === "Transfer successful!") {
         reset();
         return toast({
-          description: "Transfer successful!",
+          description: response.data.msg,
         });
       }
-    } catch (errors) {
+      return toast({
+        variant: "destructive",
+        description: response.data.msg,
+      });
+    } catch (errors: any) {
       console.log(errors);
+      return toast({
+        variant: "destructive",
+        description: errors.message,
+      });
     }
-    // return toast({
-    //   variant: "destructive",
-    //   description: "Transfer failed!",
-    // });
   };
 
   return (
@@ -83,11 +87,11 @@ export default function () {
             <Input
               id="solanaAddress"
               placeholder="Enter Solana wallet address"
-              {...register("address")}
+              {...register("toAddress")}
             />
-            {errors.address && (
+            {errors.toAddress && (
               <div className="text-red-500 text-xs">
-                {errors.address.message}
+                {errors.toAddress.message}
               </div>
             )}
             <Label htmlFor="username" className="">
@@ -98,7 +102,7 @@ export default function () {
               autoComplete="off"
               id="amount"
               placeholder="0 SOL"
-              {...register("amount", { valueAsNumber: false })}
+              {...register("amount", { valueAsNumber: true })}
             />
             {errors.amount && (
               <div className="text-red-500 text-xs">

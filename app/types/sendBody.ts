@@ -1,9 +1,12 @@
 import { z } from "zod";
+import bs58 from "bs58";
+
+const base58Regex = /^[1-9A-HJ-NP-Za-km-z]+$/;
 
 export const sendBody = z.object({
-  //Please fix validation for publicKey
-  address: z.string().min(20, { message: "Please enter valid address" }),
-  // amount: z.string().min(1, { message: "Invalid amount" }),
+  //Support decimal amount
+
+  toAddress: z.string().regex(base58Regex, "Please enter valid address"),
   amount: z.coerce
     .number()
     .int()

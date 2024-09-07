@@ -1,9 +1,6 @@
 "use client";
 
-import PropagateLoader from "react-spinners/PropagateLoader";
 import HashLoader from "react-spinners/HashLoader";
-
-
 import {
   Card,
   CardContent,
@@ -12,10 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import axios from "axios";
-
 import { ReactNode, useEffect, useState } from "react";
-import Send from "./Send";
 import Tokens from "./Tokens";
+import Send from "./Send";
 
 export interface TokensTypes {
   name: string;
@@ -56,13 +52,13 @@ export default function ({ session }: { session: any }) {
     <>
       <div className="flex justify-center items-center h-screen">
         {loading ? (
-            <HashLoader color="#ffffff" size={90}/>
-          // <PropagateLoader color="#ffffff" size={15} />
+          <HashLoader color="#ffffff" size={90} />
         ) : (
+          // <PropagateLoader color="#ffffff" size={15} />
           <Card className="bg-gray-900 text-white w-2/5">
             <CardHeader>
               <CardTitle className="text-3xl">
-                Welcome back, {(session?.user?.name).split(" ")[0]}
+                {/* Welcome back, {(session?.user?.name).split(" ")[0]} */}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex justify-between items-center">

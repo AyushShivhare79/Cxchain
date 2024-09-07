@@ -1,7 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
-import { Keypair, PublicKey } from "@solana/web3.js";
-import { signIn, signOut } from "next-auth/react";
+import { Keypair } from "@solana/web3.js";
 
 const prisma = new PrismaClient();
 
