@@ -41,7 +41,7 @@ export default function () {
         toAddress: data.toAddress,
         amount: data.amount,
       });
-      
+
       setLoading(false);
 
       if (response.data.msg === "Transfer successful!") {
@@ -55,7 +55,6 @@ export default function () {
         description: response.data.msg,
       });
     } catch (errors: any) {
-      console.log(errors);
       return toast({
         variant: "destructive",
         description: errors.message,
@@ -102,7 +101,7 @@ export default function () {
               autoComplete="off"
               id="amount"
               placeholder="0 SOL"
-              {...register("amount", { valueAsNumber: true })}
+              {...register("amount", { valueAsNumber: false })}
             />
             {errors.amount && (
               <div className="text-red-500 text-xs">

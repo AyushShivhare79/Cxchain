@@ -18,7 +18,7 @@ async function Token(req: NextRequest) {
 
   const tokens = supportedTokens.map((token, index) => ({
     ...token,
-    balance: balances[index].toFixed(4),
+    balance: balances[index].toFixed(2),
     usdBalance: (balances[index] * Number(token.price)).toFixed(2),
   }));
 

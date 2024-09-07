@@ -48,17 +48,17 @@ export default function ({ session }: { session: any }) {
       }, 2000);
     });
   };
+
   return (
     <>
       <div className="flex justify-center items-center h-screen">
         {loading ? (
           <HashLoader color="#ffffff" size={90} />
         ) : (
-          // <PropagateLoader color="#ffffff" size={15} />
           <Card className="bg-gray-900 text-white w-2/5">
             <CardHeader>
               <CardTitle className="text-3xl">
-                {/* Welcome back, {(session?.user?.name).split(" ")[0]} */}
+                Welcome back, {(session?.user?.name).split(" ")[0]}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex justify-between items-center">
@@ -67,12 +67,12 @@ export default function ({ session }: { session: any }) {
                 <div className="text-2xl text-slate-600">USD</div>
               </div>
               <div className="flex justify-center items-center gap-2">
-                Your Wallet Address
+                {publicKey.substring(0, 4)}...
+                {publicKey.substring(publicKey.length - 4, publicKey.length)}
                 <div className="cursor-pointer" onClick={handleCopy}>
                   {showCopiedMessage ? <TickIcon /> : <CopyIcon />}
                 </div>
               </div>
-              {/* <div>{publicKey}...{publicKey}</div> */}
             </CardContent>
             <CardContent className="flex gap-5">
               <Send />
