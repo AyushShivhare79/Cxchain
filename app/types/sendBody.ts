@@ -7,10 +7,7 @@ export const sendBody = z.object({
   //Support decimal amount
 
   toAddress: z.string().regex(base58Regex, "Please enter valid address"),
-  amount: z.coerce
-    .number()
-    .int()
-    .gte(1, { message: "Please enter valid amount" }),
+  amount: z.coerce.number().gte(1, { message: "Please enter valid amount" }),
 });
 
 export type SendBody = z.TypeOf<typeof sendBody>;

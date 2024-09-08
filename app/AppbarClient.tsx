@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 
 export default function () {
   const session = useSession();
+  console.log("WORKING: ", session);
   return (
     <>
       <div className="relative z-10">

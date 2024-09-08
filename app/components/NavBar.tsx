@@ -1,18 +1,20 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function ({
   user,
   onSignin,
   onSignout,
 }: {
-  user: any;
-  onSignin: any;
-  onSignout: any;
+  user:
+    | {
+        name?: string | null;
+        email?: string | null;
+        image?: string | null;
+      }
+    | undefined;
+  onSignin: () => Promise<void>;
+  onSignout: () => Promise<void>;
 }) {
-  const { data: session, status } = useSession();
   return (
     <>
       <div className="flex justify-between items-center bg-black px-20 py-3">
@@ -27,12 +29,6 @@ export default function ({
         >
           {user ? <div>Logout</div> : <div>SignIn</div>}
         </Button>
-
-        {/* {status === "authenticated" ? (
-          <Button onClick={() => signOut({ callbackUrl: "/" })}>Logout</Button>
-        ) : (
-          <Button onClick={() => signIn("google")}>SignIn</Button>
-        )} */}
       </div>
     </>
   );

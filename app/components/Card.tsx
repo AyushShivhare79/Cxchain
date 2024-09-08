@@ -22,7 +22,16 @@ export interface TokensTypes {
   balance: number;
   usdBalance: number;
 }
-export default function ({ session }: { session: any }) {
+
+interface sessionType {
+  user: {
+    id: string;
+    name: string;
+    publicKey: string;
+  };
+}
+
+export default function ({ session }: { session: sessionType }) {
   const [response, setResponse] = useState<ReactNode>();
   const [loading, setLoading] = useState<boolean>(true);
   const [tokens, setTokens] = useState<TokensTypes[]>([]);
@@ -77,7 +86,7 @@ export default function ({ session }: { session: any }) {
             <CardContent className="flex gap-5">
               <Send />
             </CardContent>
-            <CardFooter className="bg-black rounded-xl">
+            <CardFooter className="bg-stone-950 rounded-xl">
               <Tokens tokens={tokens} />
             </CardFooter>
           </Card>

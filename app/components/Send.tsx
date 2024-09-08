@@ -13,19 +13,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sendBody, SendBody } from "../types/sendBody";
+import SendInputs from "./SendInputs";
 
 export default function () {
   // const [open, setOpen] = useState<boolean>(false);
 
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -80,34 +80,20 @@ export default function () {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-3"
           >
-            <Label htmlFor="username" className="">
-              Wallet Address:
-            </Label>
-            <Input
+            <SendInputs
               id="solanaAddress"
-              placeholder="Enter Solana wallet address"
-              {...register("toAddress")}
+              label="Wallet Address: "
+              placeholder={"Enter Solana wallet address"}
+              register={{ ...register("toAddress") }}
+              errors={errors.toAddress}
             />
-            {errors.toAddress && (
-              <div className="text-red-500 text-xs">
-                {errors.toAddress.message}
-              </div>
-            )}
-            <Label htmlFor="username" className="">
-              Amount (SOL):
-            </Label>
-            <Input
-              type="number"
-              autoComplete="off"
+            <SendInputs
               id="amount"
-              placeholder="0 SOL"
-              {...register("amount", { valueAsNumber: false })}
+              label="Amount (SOL): "
+              placeholder={"0 SOL"}
+              register={{ ...register("amount") }}
+              errors={errors.amount}
             />
-            {errors.amount && (
-              <div className="text-red-500 text-xs">
-                {errors.amount.message}
-              </div>
-            )}
 
             <DialogFooter>
               <Button
