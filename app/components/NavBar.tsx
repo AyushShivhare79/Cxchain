@@ -17,8 +17,8 @@ export default function ({
 }) {
   return (
     <>
-      <div className="flex justify-between items-center bg-black px-20 py-3">
-        <div className="flex items-center justify-center gap-2 text-xl font-semibold">
+      <div className="flex justify-between items-center bg-black px-4  py-3 md:px-10">
+        <div className="flex justify-center items-center  gap-2 text-xl font-semibold">
           <WalletIcon />
           <div>Cxchain</div>
         </div>

@@ -13,22 +13,30 @@ export default function () {
   const user = session?.user;
   return (
     <>
-      <div className="relative overflow-hidden">
-        <div className="flex relative">
+      <div className="overflow-hidden w-full relative border border-white h-screen">
+        <div className="flex">
           <Image
-            className="relative right-1/4 bottom-40"
+            className="relative invisible md:bottom-40 md:right-96 md:visible"
             src={ring}
             width={1200}
             height={800}
             alt="bg-image"
           />
-          <Image src={ring} width={1200} height={800} alt="bg-image" />
+          <Image
+            className="relative right-2/3 md:right-[2%]"
+            src={ring}
+            width={1200}
+            height={800}
+            alt="bg-image"
+          />
         </div>
-        <div className="flex flex-col justify-center items-center w-full gap-5 absolute z-10 bottom-20 ">
-          <h1 className="text-5xl">The Indian cryptocurrency Revolution</h1>
+
+        <div className="text-center flex flex-col justify-center items-center w-full border border-white gap-5 absolute top-1/2 left-1/2 z-10 transform -translate-x-2/4 -translate-y-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
+          <h1 className=" text-5xl">The Indian cryptocurrency Revolution</h1>
           <p className="text-xl">
             Create a frictionless wallet with just a Google Account.
           </p>
+
           <div className="pt-10">
             <Button
               onClick={() =>

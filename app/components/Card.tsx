@@ -41,10 +41,14 @@ export default function ({ session }: { session: sessionType }) {
 
   useEffect(() => {
     const getKey = async () => {
-      const backData = await axios.get(`/api/token?address=${publicKey}`);
-      setResponse(backData.data?.totalBalance);
-      setTokens(backData.data?.tokens);
-      setLoading(false);
+      try {
+        const backData = await axios.get(`/api/token?address=${publicKey}`);
+        setResponse(backData.data?.totalBalance);
+        setTokens(backData.data?.tokens);
+        setLoading(false);
+      } catch (error) {
+        return console.log(error);
+      }
     };
     getKey();
   }, [publicKey]);
