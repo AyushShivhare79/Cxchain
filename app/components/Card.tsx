@@ -64,11 +64,11 @@ export default function ({ session }: { session: sessionType }) {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen ">
         {loading ? (
           <HashLoader color="#ffffff" size={90} />
         ) : (
-          <Card className="bg-gray-900 text-white w-2/5">
+          <Card className="bg-gray-900 text-white w-full md:w-2/5">
             <CardHeader>
               <CardTitle className="text-3xl">
                 Welcome back, {(session?.user?.name).split(" ")[0]}
@@ -76,8 +76,8 @@ export default function ({ session }: { session: sessionType }) {
             </CardHeader>
             <CardContent className="flex justify-between items-center">
               <div className="flex justify-center items-baseline font-semibold gap-2">
-                <div className="text-4xl">${response}</div>
-                <div className="text-2xl text-slate-600">USD</div>
+                <div className="text-2xl md:text-4xl">${response}</div>
+                <div className="text-lg md:text-2xl text-slate-600">USD</div>
               </div>
               <div className="flex justify-center items-center gap-2">
                 {publicKey.substring(0, 4)}...
