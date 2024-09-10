@@ -90,7 +90,7 @@ export default function ({ session }: { session: sessionType }) {
             <CardContent className="flex gap-5">
               <Send />
             </CardContent>
-            <CardFooter className="bg-stone-950 rounded-xl">
+            <CardFooter className="bg-stone-950 border border-stone-400 rounded-xl">
               <Tokens tokens={tokens} />
             </CardFooter>
           </Card>

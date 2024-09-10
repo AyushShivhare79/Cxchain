@@ -24,7 +24,7 @@ export default function ({
         </div>
 
         <Button
-          className="bg-white text-black hover:bg-purple-100"
+          className="bg-white text-black hover:bg-violet-500 hover:text-white"
           onClick={user ? onSignout : onSignin}
         >
           {user ? <div>Logout</div> : <div>SignIn</div>}

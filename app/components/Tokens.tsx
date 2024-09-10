@@ -18,7 +18,7 @@ export default function ({ tokens }: { tokens: TokensTypes[] }) {
 
                 <div className="flex justify-between items-center">
                   <div className="text-gray-400 text-sm">
-                    1 {value.name} = {value.price}
+                    1 {(value.name).toLowerCase()} = {value.price}
                   </div>
                   <div className="text-gray-400 text-sm">{value.balance}</div>
                 </div>
