@@ -3,7 +3,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import NavBar from "./components/NavBar";
 
-export default function () {
+export default function AppbarClient() {
   const session = useSession();
   console.log("WORKING: ", session);
   return (

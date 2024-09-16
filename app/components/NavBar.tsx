@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-export default function ({
+export default function NavBar({
   user,
   onSignin,
   onSignout,

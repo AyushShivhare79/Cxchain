@@ -31,7 +31,7 @@ interface sessionType {
   };
 }
 
-export default function ({ session }: { session: sessionType }) {
+export default function CustomCard({ session }: { session: sessionType }) {
   const [response, setResponse] = useState<ReactNode>();
   const [loading, setLoading] = useState<boolean>(true);
   const [tokens, setTokens] = useState<TokensTypes[]>([]);

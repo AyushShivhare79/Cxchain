@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FieldError } from "react-hook-form";
 
-export default function ({
+export default function SendInputs({
   placeholder,
   register,
   id,

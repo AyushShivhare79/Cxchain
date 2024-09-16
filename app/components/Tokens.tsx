@@ -1,6 +1,6 @@
 import { TokensTypes } from "./Card";
 
-export default function ({ tokens }: { tokens: TokensTypes[] }) {
+export default function Tokens({ tokens }: { tokens: TokensTypes[] }) {
   return (
     <>
       <div className="flex justify-center items-center flex-col gap-2 w-full ">
@@ -18,7 +18,7 @@ export default function ({ tokens }: { tokens: TokensTypes[] }) {
 
                 <div className="flex justify-between items-center">
                   <div className="text-gray-400 text-sm">
-                    1 {(value.name).toLowerCase()} = {value.price}
+                    1 {value.name.toLowerCase()} = {value.price}
                   </div>
                   <div className="text-gray-400 text-sm">{value.balance}</div>
                 </div>

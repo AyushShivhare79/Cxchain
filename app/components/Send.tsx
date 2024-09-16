@@ -20,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { sendBody, SendBody } from "../types/sendBody";
 import SendInputs from "./SendInputs";
 
-export default function () {
+export default function Send() {
   // const [open, setOpen] = useState<boolean>(false);
 
   const [loading, setLoading] = useState<boolean>(false);
