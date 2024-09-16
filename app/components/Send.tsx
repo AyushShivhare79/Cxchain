@@ -90,7 +90,7 @@ export default function () {
             <SendInputs
               id="amount"
               label="Amount (SOL): "
-              placeholder={"0 SOL"}
+              placeholder={"0 sol"}
               register={{ ...register("amount") }}
               errors={errors.amount}
             />

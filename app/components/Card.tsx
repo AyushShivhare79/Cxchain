@@ -68,7 +68,7 @@ export default function ({ session }: { session: sessionType }) {
         {loading ? (
           <HashLoader color="#ffffff" size={90} />
         ) : (
-          <Card className="bg-gray-900 text-white w-full md:w-2/5">
+          <Card className="bg-gray-900 text-white w-full md:w-2/5 border-2 border-black rounded-2xl">
             <CardHeader>
               <CardTitle className="text-3xl">
                 Welcome back, {(session?.user?.name).split(" ")[0]}
@@ -90,7 +90,7 @@ export default function ({ session }: { session: sessionType }) {
             <CardContent className="flex gap-5">
               <Send />
             </CardContent>
-            <CardFooter className="bg-stone-950 border border-stone-400 rounded-xl">
+            <CardFooter className="bg-[#151516] rounded-xl">
               <Tokens tokens={tokens} />
             </CardFooter>
           </Card>
