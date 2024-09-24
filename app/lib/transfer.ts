@@ -13,8 +13,8 @@ import { connection } from "./constants";
 
 export default async function transferSolana(to: PublicKey, amount: number) {
   const session = await getServerSession(authOptions);
-  // const username = session.user.email;
-  const username = "ayushshivhare1003@gmail.com";
+  const username = session.user.email;
+
   const transaction = new Transaction();
 
   const userInfo = await prisma.user.findFirst({
@@ -26,15 +26,9 @@ export default async function transferSolana(to: PublicKey, amount: number) {
     },
   });
   const fromKeyPair = userInfo?.solwallet[0].privateKey || "";
-  // const b = fromKeyPair.split(",").map(function (item) {
-  //   return Number(item);
-  // });
-  const b = [
-    38, 154, 148, 188, 3, 255, 152, 85, 94, 174, 251, 67, 32, 214, 138, 195,
-    209, 20, 167, 90, 154, 87, 30, 11, 166, 246, 98, 113, 249, 100, 127, 153,
-    38, 200, 139, 118, 142, 179, 184, 107, 82, 210, 230, 135, 140, 82, 146, 185,
-    98, 67, 98, 190, 157, 235, 94, 198, 205, 5, 160, 48, 74, 173, 166, 243,
-  ];
+  const b = fromKeyPair.split(",").map(function (item) {
+    return Number(item);
+  });
 
   const secret = Uint8Array.from(b);
   const from = Keypair.fromSecretKey(secret);
