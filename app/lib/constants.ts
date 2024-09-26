@@ -9,12 +9,7 @@ let prices: {
   };
 } = {};
 
-const TOKEN_PRICE_REFRESH_INTERVAL = 60 * 1000; // every 60s
-
-// export const connection = new Connection(
-//   "https://solana-mainnet.g.alchemy.com/v2/EspGgEsKtp6xdG1-P32lj9raEFUlgXNc"
-// );
-
+const TOKEN_PRICE_REFRESH_INTERVAL = 60 * 1000;
 export const connection = new Connection(clusterApiUrl("devnet"));
 
 export async function getSupportedTokens() {

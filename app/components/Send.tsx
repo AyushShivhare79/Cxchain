@@ -69,7 +69,7 @@ export default function Send() {
         <DialogTrigger asChild>
           <Button className="bg-white text-black w-full">Send</Button>
         </DialogTrigger>
-        <DialogContent className="bg-black sm:max-w-[425px]">
+        <DialogContent className="bg-black border-2 border-[#0d0428] sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Send to Solana Wallet Address</DialogTitle>
             <DialogDescription>

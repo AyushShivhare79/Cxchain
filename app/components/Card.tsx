@@ -1,6 +1,6 @@
 "use client";
 
-import HashLoader from "react-spinners/HashLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 import {
   Card,
   CardContent,
@@ -66,9 +66,9 @@ export default function CustomCard({ session }: { session: sessionType }) {
     <>
       <div className="flex justify-center items-center h-screen ">
         {loading ? (
-          <HashLoader color="#ffffff" size={90} />
+          <PacmanLoader color="#ffffff" size={35} />
         ) : (
-          <Card className="bg-gray-900 text-white w-full md:w-2/5 border-2 border-black rounded-2xl">
+          <Card className="bg-gray-900 text-white w-full md:w-1/3 border border-[#0d0428] rounded-2xl">
             <CardHeader>
               <CardTitle className="text-3xl">
                 Welcome back, {(session?.user?.name).split(" ")[0]}
