@@ -33,7 +33,7 @@ export default function Main() {
 
         <div className="flex flex-col text-center justify-center items-center w-full gap-5 absolute top-1/2 left-1/2 z-10 transform -translate-x-2/4 -translate-y-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
           <h1 className="text-5xl">The Indian cryptocurrency Revolution</h1>
-          <p className="text-xl">
+          <p className="text-xl ">
             Create a frictionless wallet with just a Google Account.
           </p>
 

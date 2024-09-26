@@ -39,7 +39,7 @@ export default function Send() {
     try {
       const response = await axios.post("/api/transfer?", {
         toAddress: data.toAddress,
-        amount: data.amount,
+        amount: data.amount.toString(),
       });
 
       setLoading(false);

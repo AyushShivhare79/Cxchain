@@ -6,10 +6,15 @@ import { sendBody } from "../../types/sendBody";
 async function Transfer(req: NextRequest) {
   const userInfo = await req.json();
 
-  // const { success } = sendBody.safeParse(userInfo);
-  // if (!success) {
-  //   return NextResponse.json({ msg: "Invalid credentials!" });
-  // }
+  console.log("HERE");
+
+  const { success } = sendBody.safeParse(userInfo);
+  
+  if (!success) {
+    return NextResponse.json({ msg: "Invalid credentials!" });
+  }
+  console.log("HERE");
+
   const { toAddress, amount } = userInfo;
 
   try {

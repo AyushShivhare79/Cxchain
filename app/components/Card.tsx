@@ -68,7 +68,7 @@ export default function CustomCard({ session }: { session: sessionType }) {
         {loading ? (
           <PacmanLoader color="#ffffff" size={35} />
         ) : (
-          <Card className="bg-gray-900 text-white w-full md:w-1/3 border border-[#0d0428] rounded-2xl">
+          <Card className="bg-gray-900 text-white w-full md:w-1/3 border border-[#0d0428] rounded-xl">
             <CardHeader>
               <CardTitle className="text-3xl">
                 Welcome back, {(session?.user?.name).split(" ")[0]}
