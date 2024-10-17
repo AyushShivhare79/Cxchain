@@ -8,13 +8,18 @@ import { getSupportedTokens, connection } from "@/app/lib/constants";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 
 async function Token(req: NextRequest) {
+  
   const { searchParams } = new URL(req.url);
   const address = searchParams.get("address") as unknown as string;
+  
+  console.log("Before: ",  address);
   const supportedTokens = await getSupportedTokens();
-
+  console.log("After: ", supportedTokens)
+  
   const balances = await Promise.all(
     supportedTokens.map((token) => getAccountBalance(token, address))
   );
+  
 
   const tokens = supportedTokens.map((token, index) => ({
     ...token,

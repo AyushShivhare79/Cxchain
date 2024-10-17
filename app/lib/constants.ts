@@ -27,6 +27,7 @@ export async function getSupportedTokens() {
       console.log(e);
     }
   }
+  //Removed usdc for now
   return SUPPORTED_TOKENS.map((s) => ({
     ...s,
     price: prices[s.name].price,
