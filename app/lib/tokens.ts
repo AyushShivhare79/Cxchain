@@ -14,11 +14,18 @@ export const SUPPORTED_TOKENS: TokenDetails[] = [
     price: "",
     decimals: 9,
   },
-  {
-    name: "USDT",
-    mint: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-    native: false,
-    price: "",
-    decimals: 6,
-  },
+  // {
+  //   name: "USDC",
+  //   mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  //   native: false,
+  //   price: "",
+  //   decimals: 6,
+  // },
+  // {
+  //   name: "USDT",
+  //   mint: "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+  //   native: false,
+  //   price: "",
+  //   decimals: 6,
+  // },
 ];
